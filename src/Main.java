@@ -3,30 +3,42 @@ import java.util.*;
 
 public class Main {
 
-
     public static void main(String[] args) throws IOException {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
         InputReader in = new InputReader(inputStream);
         InputReader.OutputWriter out = new InputReader.OutputWriter(outputStream);
 
-        /*String [] words = {"sanan","natalia","mariya","veronika","barbora","maryna"};
-        Trie trie = new Trie();
-        for (String word : words) {
-            trie.insert(word);
+        PriorityQueue<Integer> q = new PriorityQueue<>(Comparator.reverseOrder());
+
+        int [] a = {3,5,4,2,1,6};
+        int k = 4;
+        for(int i : a) {
+            q.add(i);
+            if(q.size() > k) {
+                q.poll();
+            }
         }
-        out.println(trie.search("sanan"));
-        out.println(trie.startsWith("san"));
-        out.println(trie.search("mar"));
-        out.println(trie.startsWith("mar"));*/
-
-        List<Integer> list = new ArrayList<>();
-
-
-
+        StringBuilder sb = new StringBuilder();
+        
+        // 1 2 3 4 5 6
+        // 3 2 1
+        out.println(q);
         out.flush();
     }
 
+    private static Set<Integer> del(int n) {
+        Set<Integer> set = new HashSet<>();
+        for (int i = 2; i * i <= n; i++) {
+            if(n%i==0) {
+                set.add(i);
+                if(i*i!=n) {
+                    set.add(n/i);
+                }
+            }
+        }
+        return set;
+    }
     private static void randomlyFillAnArray(int [] a) {
         for (int i = 0; i < a.length; i++) {
             a[i] = (int)(Math.random()*Integer.MAX_VALUE);
@@ -158,29 +170,38 @@ public class Main {
     }
 }
 
-class LetterWithFrequency {
-    private char letter;
-    private int frequency;
+class Point {
+    
+    private int x;
+    private int y;
 
-    public char getLetter() {
-        return letter;
+    public int getX() {
+        return x;
     }
 
-    public void setLetter(char letter) {
-        this.letter = letter;
+    public void setX(int x) {
+        this.x = x;
     }
 
-    public int getFrequency() {
-        return frequency;
+    public int getY() {
+        return y;
     }
 
-    public void setFrequency(int frequency) {
-        this.frequency = frequency;
+    public void setY(int y) {
+        this.y = y;
     }
 
-    public LetterWithFrequency(char letter, int frequency) {
-        this.letter = letter;
-        this.frequency = frequency;
+    public Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
     }
 }
 
