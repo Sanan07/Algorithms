@@ -9,21 +9,10 @@ public class Main {
         InputReader in = new InputReader(inputStream);
         InputReader.OutputWriter out = new InputReader.OutputWriter(outputStream);
 
-        PriorityQueue<Integer> q = new PriorityQueue<>(Comparator.reverseOrder());
+        long n = in.nextLong();
+        long max =  (n*(n-1))/2;
 
-        int [] a = {3,5,4,2,1,6};
-        int k = 4;
-        for(int i : a) {
-            q.add(i);
-            if(q.size() > k) {
-                q.poll();
-            }
-        }
-        StringBuilder sb = new StringBuilder();
-        
-        // 1 2 3 4 5 6
-        // 3 2 1
-        out.println(q);
+        out.println(max);
         out.flush();
     }
 
