@@ -9,13 +9,44 @@ public class Main {
         InputReader in = new InputReader(inputStream);
         InputReader.OutputWriter out = new InputReader.OutputWriter(outputStream);
 
-        long n = in.nextLong();
-        long max =  (n*(n-1))/2;
+        int n = in.nextInt();
+        long [] a = new long[n];
+        Map<Long,Integer> map = new HashMap<>();
+        for (int i = 0; i < a.length; i++) {
+            a[i] = in.nextLong();
+            map.put(a[i],map.getOrDefault(a[i], 0 ) + 1);
+        }
+        long sum = 0;
+        for(Map.Entry<Long,Integer> m : map.entrySet()) {
+            long key = m.getKey();
+            long value = m.getValue();
+            long res = 0;
+            if(key > 0) {
+                res = value*(value-1)/2;
+            }
+            sum+=res;
+        }
+        for (int i = 0; i < a.length; i++) {
+            int value = map.get(a[i]);
+            out.println(sum - value + 1);
+        }
 
-        out.println(max);
+
+        List<int[]> list = new ArrayList<>();
+        
+        list.stream().toArray();
         out.flush();
     }
-
+    private static boolean isPalindrome(String s, int start, int end) {
+        int i = start;
+        int j = end;
+        while (i < j) {
+            if(s.charAt(i++)!=s.charAt(j--)) {
+                return false;
+            }
+        }
+        return true;
+    }
     private static Set<Integer> del(int n) {
         Set<Integer> set = new HashSet<>();
         for (int i = 2; i * i <= n; i++) {
@@ -158,8 +189,16 @@ public class Main {
         return set.size();
     }
 }
-
-class Point {
+class IntervalComparator implements Comparator<int []> {
+    @Override
+    public int compare(int[] a, int[] b) {
+        if(a[0] - b[0] == 0) {
+            return a[1] - b[1];
+        }
+        return a[0] - b[0];
+    }
+}
+class Point implements Comparator<Point>{
     
     private int x;
     private int y;
@@ -191,6 +230,11 @@ class Point {
                 "x=" + x +
                 ", y=" + y +
                 '}';
+    }
+
+    @Override
+    public int compare(Point o1, Point o2) {
+        return 0;
     }
 }
 
