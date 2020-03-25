@@ -12,6 +12,8 @@ public class Main {
         int n = in.nextInt();
         int m = in.nextInt();
 
+        
+
         out.flush();
     }
     private static boolean isPalindrome(String s, int start, int end) {
