@@ -9,8 +9,8 @@ public class Main {
         InputReader in = new InputReader(inputStream);
         InputReader.OutputWriter out = new InputReader.OutputWriter(outputStream);
 
-        int n = in.nextInt();
-        int m = in.nextInt();
+        
+
 
         
 
