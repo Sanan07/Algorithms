@@ -10,31 +10,8 @@ public class Main {
         InputReader.OutputWriter out = new InputReader.OutputWriter(outputStream);
 
         int n = in.nextInt();
-        long [] a = new long[n];
-        Map<Long,Integer> map = new HashMap<>();
-        for (int i = 0; i < a.length; i++) {
-            a[i] = in.nextLong();
-            map.put(a[i],map.getOrDefault(a[i], 0 ) + 1);
-        }
-        long sum = 0;
-        for(Map.Entry<Long,Integer> m : map.entrySet()) {
-            long key = m.getKey();
-            long value = m.getValue();
-            long res = 0;
-            if(key > 0) {
-                res = value*(value-1)/2;
-            }
-            sum+=res;
-        }
-        for (int i = 0; i < a.length; i++) {
-            int value = map.get(a[i]);
-            out.println(sum - value + 1);
-        }
+        int m = in.nextInt();
 
-
-        List<int[]> list = new ArrayList<>();
-        
-        list.stream().toArray();
         out.flush();
     }
     private static boolean isPalindrome(String s, int start, int end) {
