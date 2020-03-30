@@ -9,13 +9,54 @@ public class Main {
         InputReader in = new InputReader(inputStream);
         InputReader.OutputWriter out = new InputReader.OutputWriter(outputStream);
 
+        int t = in.nextInt();
+        while (t-->0) {
+            int n = in.nextInt();
+            char [] c = in.next().toCharArray();
+            int [] a = new int[n];
+            for (int i = 0; i < a.length; i++) {
+                a[i] = c[i] - '0';
+            }
+            out.println(Arrays.toString(a));
+        }
+
+
+        TreeMap<Integer,Integer> map = new TreeMap<>();
+        Map.Entry<Integer,Integer> e = map.firstEntry();
         
-
-
-        
-
         out.flush();
     }
+
+    public int findTheLongestSubstring(String s) {
+        Set<StringBuilder> set = new HashSet<>();
+        for(int i = 0; i < s.length();i++) {
+            StringBuilder sb = new StringBuilder();
+            for(int j = i; j < s.length(); j++) {
+                sb.append(s.charAt(i));
+                set.add(sb);
+            }
+        }
+        int max = 0;
+        for(StringBuilder ss : set) {
+            int a = 0;
+            int e = 0;
+            int i = 0;
+            int o = 0;
+            int u = 0;
+            for(int j = 0; j < ss.length();j++) {
+                if(ss.charAt(i) == 'a') a++;
+                if(ss.charAt(i) == 'e') e++;
+                if(ss.charAt(i) == 'i') i++;
+                if(ss.charAt(i) == 'o') o++;
+                if(ss.charAt(i) == 'u') u++;
+            }
+            if(a%2 == 0 && e%2==0 && i%2==0 && o%2==0 && u%2==0) {
+                max = Math.max(max,ss.length());
+            }
+        }
+        return max;
+    }
+
     private static boolean isPalindrome(String s, int start, int end) {
         int i = start;
         int j = end;
