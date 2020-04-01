@@ -20,6 +20,9 @@ public class Main {
             out.println(Arrays.toString(a));
         }
 
+        List<Integer> list = new ArrayList<>();
+        int [] arr = list.stream().mapToInt(i->i).toArray();
+
 
         TreeMap<Integer,Integer> map = new TreeMap<>();
         Map.Entry<Integer,Integer> e = map.firstEntry();
